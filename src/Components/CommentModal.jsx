@@ -8,7 +8,7 @@ class CommentModal extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {modal: false, selectedFile: null, comment: {}};
+        this.state = {modal: false, selectedFile: null, comment: {comment: ""}};
     }
 
     submit = (e) => {
@@ -43,6 +43,12 @@ class CommentModal extends React.Component {
         this.setState({comment: {...this.state.comment, [e.target.id]: e.target.value}});
     };
 
+    addEmoticon = (e) => {
+        e.persist();
+        console.log(e);
+        this.setState({comment: {comment: this.state.comment.comment + e.target.innerText}});
+    };
+
     render() {
         const props = this.props;
         return (
@@ -59,19 +65,29 @@ class CommentModal extends React.Component {
 
                 <Modal isOpen={this.state.modal} toggle={this.toggle.bind(this)}
                        className={this.props.className}>
-                    <ModalHeader toggle={this.toggle.bind(this)}>Edit experience</ModalHeader>
+                    <ModalHeader toggle={this.toggle.bind(this)}>Post a comment</ModalHeader>
                     <ModalBody>
                         <Form>
                             <Row form>
                                 <Col md={12}>
                                     <FormGroup>
                                         <Label for='startDate'>Write your comment</Label>
-                                        <textarea onChange={this.updateForm} name="comment" id="comment" cols="30"
-                                                  rows="10"></textarea>
+                                        <Input type="textarea" onChange={this.updateForm} name="comment" id="comment"
+                                               cols="30"
+                                               rows="10" value={this.state.comment.comment}></Input>
                                     </FormGroup>
                                 </Col>
                             </Row>
-
+                            <Row form>
+                                <span style={{cursor: 'pointer'}} onClick={this.addEmoticon}>😀</span>
+                                <span style={{cursor: 'pointer'}} onClick={this.addEmoticon}>🤣</span>
+                                <span style={{cursor: 'pointer'}} onClick={this.addEmoticon}>😇</span>
+                                <span style={{cursor: 'pointer'}} onClick={this.addEmoticon}>😅</span>
+                                <span style={{cursor: 'pointer'}} onClick={this.addEmoticon}>😜</span>
+                                <span style={{cursor: 'pointer'}} onClick={this.addEmoticon}>😩</span>
+                                <span style={{cursor: 'pointer'}} onClick={this.addEmoticon}>😭</span>
+                                <span style={{cursor: 'pointer'}} onClick={this.addEmoticon}>😡</span>
+                            </Row>
                         </Form>
                     </ModalBody>
                     <ModalFooter>

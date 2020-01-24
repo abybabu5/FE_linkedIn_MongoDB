@@ -203,6 +203,13 @@ code {
     height: 60px;
     border-radius: 50%;
 }
+
+.user-image-small {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
 .comment-image {
     width: 40px;
     height: 40px;
@@ -220,15 +227,28 @@ code {
     /*background-color: #221f1f ;*/
 
 }
+
 .user-name {
     font-weight: bold;
     font-size: 18px;
     line-height: 20px;
 }
 
+.user-name-small {
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 20px;
+    margin-left: 5px;
+}
+
 .user-title, .comment-text {
     font-size: 14px;
     line-height: 18px;
+}
+
+.comment-emoticon {
+    font-size: 32px;
+
 }
 
 .comment-user-name {

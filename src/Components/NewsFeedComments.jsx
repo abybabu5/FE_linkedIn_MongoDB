@@ -50,45 +50,16 @@ class NewsFeedComments extends Component {
     }
 
     loadData = async () => {
-        // load posts and users
-        const comments = await Api.fetch('/posts/');
-        const users = await Api.fetch('/profile/');
-        // map the user object to his post
-        comments.map(post => {
-            post.user = users.find(user => user.username === post.username);
-            return post;
-        });
-        comments.reverse();
-        this.setState({
-            comments: comments,
-            items: comments.slice(0, 5),
-            isLoading: false
-        });
+        this.props.loadData();
     };
 
-    feedData = () => {
-        console.log("feed", this.state.cursor);
-        if (!this.state.isLoading) {
-            this.setState({isLoading: true, error: undefined, cursor: this.state.cursor});
-            setTimeout(() => this.setState(state => ({
-                items: [...state.items, ...(this.state.newsfeed.slice(this.state.cursor, this.state.cursor + 5))],
-                cursor: this.state.cursor + 5,
-                isLoading: false
-            })), 2000);
-        }
-    };
-
-    componentDidMount = async () => {
-        // setInterval(() => this.loadData(), 10000);
-        this.loadData();
-    };
 
     resetUpdate() {
         this.setState({selectedComments: {}});
     }
 
     deleteComment = async (post) => {
-        let resp = await Api.fetch("/posts/comment/" + post._id, "DELETE");
+        let resp = await Api.fetch("/posts/" + this.props.postId + "/comment/" + post._id, "DELETE");
         this.loadData()
     };
     // updateNewsfeed = (val) => {
@@ -137,33 +108,40 @@ class NewsFeedComments extends Component {
             {this.props.comments && this.props.comments
                 .map((comment) =>
                     <div style={{margin: '15px'}}>
-                    <ListGroup>
-                        <ListGroupItem color="success">
-                            <div className="comment-detail">
-                                <div>
-                                    <img src={comment.postedBy.profile.image} className="comment-image"/>
-                                </div>
-                                <div className="details-container">
-                                    <div
-                                        className="comment-user-name"><Link
-                                        to={'users/' + comment.username}>{comment.postedBy.profile.name} {comment.postedBy.profile.surname}</Link>
+                        <ListGroup>
+                            <ListGroupItem color="success">
+                                <div className="comment-detail">
+                                    <div>
+                                        <img src={comment.postedBy.profile.image} className="comment-image"/>
                                     </div>
-                                    <div
-                                        className="comment-user-title">{comment.postedBy.profile.title} in {comment.postedBy.profile.area}</div>
-                                    <div
-                                        className="comment-post-age">{moment(comment.createdAt).fromNow()} {comment.isUpdated &&
-                                    <span>- updated {moment(comment.updatedAt).fromNow()}</span>}</div>
+                                    <div className="details-container">
+                                        <div
+                                            className="comment-user-name"><Link
+                                            to={'users/' + comment.username}>{comment.postedBy.profile.name} {comment.postedBy.profile.surname}</Link>
+                                        </div>
+                                        <div
+                                            className="comment-user-title">{comment.postedBy.profile.title} in {comment.postedBy.profile.area}</div>
+                                        <div
+                                            className="comment-post-age">{moment(comment.createdAt).fromNow()} {comment.isUpdated &&
+                                        <span>- updated {moment(comment.updatedAt).fromNow()}</span>}</div>
+                                    </div>
                                 </div>
-                            </div>
-                        </ListGroupItem>
-                        <ListGroupItem color="success">
-                            <div className="comment-text">{comment.comment}</div>
-                            {(Api.USER === comment.username) &&
-                            <EditComment comment={comment} refresh={this.loadData}/>}
-                            <Button className="button-margin" size="sm" onClick={() => this.deleteComment(comment)}> <i
-                                className='fas fa-trash'></i></Button>
-                        </ListGroupItem>
-                    </ListGroup>
+                            </ListGroupItem>
+                            <ListGroupItem color="success">
+                                {comment.comment.length !== 2 &&
+                                <div className="comment-text">{comment.comment}</div>}
+                                {comment.comment.length === 2 &&
+                                <div className="comment-emoticon">{comment.comment}</div>}
+                                {(Api.USER === comment.postedBy.username) &&
+                                <div style={{display: 'flex'}}>
+                                    <div className="post-bottom-spacer"/>
+                                    <EditComment comment={comment} refresh={this.loadData}/>
+                                    <Button className="button-margin" size="sm"
+                                            onClick={() => this.deleteComment(comment)}>
+                                        <i className='fas fa-trash'/></Button>
+                                </div>}
+                            </ListGroupItem>
+                        </ListGroup>
                     </div>
                 )}
         </div>
