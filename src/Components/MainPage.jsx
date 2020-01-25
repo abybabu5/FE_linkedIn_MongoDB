@@ -30,11 +30,10 @@ function PrivateRoute({children, ...rest}) {
 class MainPage extends React.Component {
     state = {};
 
+
     render() {
         return (
             <div>
-
-
                 <Router>
                     <PrivateRoute path='/' exact>
                         <NavigationBar/>

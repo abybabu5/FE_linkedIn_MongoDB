@@ -78,7 +78,7 @@ class NewsFeedComments extends Component {
 
     showUpdatedComments = (update) => {
         if (update) {
-            const index = this.state.comments.findIndex((exp) => this.state.selectedExp._id === exp._id);
+            const index = this.state.comments.findIndex((exp) => this.state.selectedComments._id === exp._id);
             this.state.comments[index] = {...this.state.selectedExp};
         }
         this.resetUpdate();

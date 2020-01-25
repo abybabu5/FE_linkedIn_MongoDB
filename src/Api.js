@@ -2,8 +2,9 @@ import {ajax} from "rxjs/ajax";
 
 class Api {
 
-    static BASE_URL = "http://localhost:3333";
-    //static BASE_URL = "https://linkedin-api-be.herokuapp.com/";
+    //static BASE_URL = "http://localhost:3333";
+    static BASE_URL = "http://be-linkedin-aby.herokuapp.com";
+
 
     static get USER() {
         console.log("USER", sessionStorage.getItem("username"));
@@ -46,7 +47,7 @@ class Api {
         console.log(endpoint);
         const headers = {...Api.BASE_HEADERS};
         if (contentType) headers["Content-type"] = contentType;
-        console.log(headers)
+        console.log(headers);
         try {
             let resp = await fetch(Api.BASE_URL + endpoint, {
                 headers: headers,

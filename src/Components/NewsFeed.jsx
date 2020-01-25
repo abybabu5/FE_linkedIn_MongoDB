@@ -165,31 +165,33 @@ class NewsFeed extends Component {
                                                                 <div className="cursor"
                                                                      onClick={(e) => this.onLike(news)}>Like &nbsp; </div>
                                                                 {news.likes && news.likes.length > 0 &&
-                                                                <Badge id={'Popover' + news._id} pill
-                                                                       onMouseEnter={() => this.toggle(news._id)}
-                                                                       onMouseLeave={() => this.toggle(news._id)}
-                                                                       color={'primary'}>{news.likes.length}</Badge>}
-                                                                <Popover placement="right"
-                                                                         isOpen={this.state.popoverOpen[news._id]}
-                                                                         target={'Popover' + news._id}
-                                                                         toggle={() => this.toggle(news._id)}>
-                                                                    <PopoverHeader>Likes</PopoverHeader>
-                                                                    <PopoverBody>
-                                                                        {news.likes.map(user => (
-                                                                            <div style={{
-                                                                                display: 'flex',
-                                                                                alignItems: 'center'
-                                                                            }}>
-                                                                                <div>
-                                                                                    <img src={user.profile.image}
-                                                                                         className="user-image-small"/>
+                                                                <div>
+                                                                    <Badge id={'Popover' + news._id} pill
+                                                                           onMouseEnter={() => this.toggle(news._id)}
+                                                                           onMouseLeave={() => this.toggle(news._id)}
+                                                                           color={'primary'}>{news.likes.length}</Badge>
+                                                                    <Popover placement="right"
+                                                                             isOpen={this.state.popoverOpen[news._id]}
+                                                                             target={'Popover' + news._id}
+                                                                             toggle={() => this.toggle(news._id)}>
+                                                                        <PopoverHeader>Likes</PopoverHeader>
+                                                                        <PopoverBody>
+                                                                            {news.likes.map(user => (
+                                                                                <div style={{
+                                                                                    display: 'flex',
+                                                                                    alignItems: 'center'
+                                                                                }}>
+                                                                                    <div>
+                                                                                        <img src={user.profile.image}
+                                                                                             className="user-image-small"/>
+                                                                                    </div>
+                                                                                    <div
+                                                                                        className="user-name-small">{user.profile.name} {user.profile.surname}</div>
                                                                                 </div>
-                                                                                <div
-                                                                                    className="user-name-small">{user.profile.name} {user.profile.surname}</div>
-                                                                            </div>
-                                                                        ))}
-                                                                    </PopoverBody>
-                                                                </Popover>
+                                                                            ))}
+                                                                        </PopoverBody>
+                                                                    </Popover>
+                                                                </div>}
                                                             </div>
                                                             <div className="post-bottom-icons">
 

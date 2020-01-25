@@ -108,57 +108,77 @@ class NavigationBar extends Component {
                     </NavItem>
                     <NavItem>
                         <div className='nav-item-div'>
-                            <FontAwesomeIcon className='nav-icon' icon={faHome}/>
-                            <NavLink href='#'>Home</NavLink>
-                        </div>
-                    </NavItem>
-                    <NavItem>
-                        <div className='nav-item-div'>
-                            <FontAwesomeIcon className='nav-icon' icon={faUsers}/>
-                            <NavLink href='#' active>
-                                My Network
+
+                            <NavLink href='/'>
+                                <FontAwesomeIcon className='nav-icon' icon={faHome}/>
+                                <div>Home</div>
                             </NavLink>
                         </div>
                     </NavItem>
                     <NavItem>
                         <div className='nav-item-div'>
-                            <FontAwesomeIcon className='nav-icon' icon={faBriefcase}/>
-                            <NavLink href='#'>Jobs</NavLink>
+
+                            <NavLink href='/NewsFeed' active>
+                                <FontAwesomeIcon className='nav-icon' icon={faUsers}/>
+                                <div>My Network</div>
+                            </NavLink>
                         </div>
                     </NavItem>
                     <NavItem>
                         <div className='nav-item-div'>
-                            <FontAwesomeIcon className='nav-icon' icon={faComments}/>
-                            <NavLink href='#'>Messaging</NavLink>
+                            <NavLink href='#'>
+                                <FontAwesomeIcon className='nav-icon' icon={faBriefcase}/>
+                                <div>Jobs</div>
+                            </NavLink>
                         </div>
                     </NavItem>
                     <NavItem>
                         <div className='nav-item-div'>
-                            <FontAwesomeIcon className='nav-icon' icon={faBell}/>
-                            <NavLink href='#'>Notifications</NavLink>
+                            <NavLink href='#'>
+                                <FontAwesomeIcon className='nav-icon' icon={faComments}/>
+                                <div>Messaging</div>
+                            </NavLink>
                         </div>
                     </NavItem>
                     <NavItem>
                         <div className='nav-item-div'>
-                            <div className='profile-image-div'>
-                                {this.state.user &&
-                                <img className={'nav-user-foto'} onClick={this.logout} src={this.state.user.image}
-                                     alt={'profile'}/>}
-                            </div>
-                            <NavLink href='#'>Me</NavLink>
+
+                            <NavLink href='#'>
+                                <FontAwesomeIcon className='nav-icon' icon={faBell}/>
+                                <div>Notifications</div>
+                            </NavLink>
+                        </div>
+                    </NavItem>
+                    <NavItem>
+                        <div className='nav-item-div'>
+
+                            <NavLink href='#'>
+                                <div className='profile-image-div'>
+                                    {this.state.user &&
+                                    <img className={'nav-user-foto'} onClick={this.logout} src={this.state.user.image}
+                                         alt={'profile'}/>}
+                                </div>
+                                <div>Me</div>
+                            </NavLink>
                         </div>
                     </NavItem>
                     <div className='vl'></div>
                     <NavItem>
                         <div className='nav-item-div'>
-                            <FontAwesomeIcon className='nav-icon' icon={faTh}/>
-                            <NavLink href='#'>Work</NavLink>
+
+                            <NavLink href='#'>
+                                <FontAwesomeIcon className='nav-icon' icon={faTh}/>
+                                <div>Work</div>
+                            </NavLink>
                         </div>
                     </NavItem>
                     <NavItem>
                         <div className='nav-item-div'>
-                            <FontAwesomeIcon className='nav-icon' icon={faHome}/>
-                            <NavLink href='#'>Learning</NavLink>
+
+                            <NavLink href='#'>
+                                <FontAwesomeIcon className='nav-icon' icon={faHome}/>
+                                <div>Learning</div>
+                            </NavLink>
                         </div>
                     </NavItem>
                 </Nav>

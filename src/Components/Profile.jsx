@@ -52,7 +52,8 @@ class Profile extends React.Component {
                             <Col className="col-12">
                                 <Jumbotron className='profile-background-image jumbotronProfile'>
                                     <Container>
-                                        <ProfileHeading printFn={this.onClick} profile={this.state.profile}/>
+                                        <ProfileHeading printFn={this.onClick} profile={this.state.profile}
+                                                        user={this.props.match}/>
                                     </Container>
                                 </Jumbotron>
                             </Col>

@@ -90,10 +90,11 @@ class Experiences extends Component {
                         <Col md={9}>
                             <h3>Experiences</h3>
                         </Col>
+                        {(Api.USER === this.props.match || this.props.match === undefined) &&
                         <Col md={3} className="text-right">
                             <ExperienceModal experience={this.state.selectedExp} updateExp={this.updateExperience}
                                              showUpdatedExperience={this.showUpdatedExperience}/>
-                        </Col>
+                        </Col>}
                     </Row>
                     {this.state.experiences.map(exp =>
                         (
