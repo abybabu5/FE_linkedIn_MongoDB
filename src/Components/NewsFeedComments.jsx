@@ -135,7 +135,7 @@ class NewsFeedComments extends Component {
                                 {(Api.USER === comment.postedBy.username) &&
                                 <div style={{display: 'flex'}}>
                                     <div className="post-bottom-spacer"/>
-                                    <EditComment comment={comment} refresh={this.loadData}/>
+                                    <EditComment comment={comment} postId={this.props.postId} refresh={this.loadData}/>
                                     <Button className="button-margin" size="sm"
                                             onClick={() => this.deleteComment(comment)}>
                                         <i className='fas fa-trash'/></Button>
