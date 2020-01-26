@@ -5,7 +5,6 @@ class Api {
     //static BASE_URL = "http://localhost:3333";
     static BASE_URL = "http://be-linkedin-aby.herokuapp.com";
 
-
     static get USER() {
         console.log("USER", sessionStorage.getItem("username"));
         return sessionStorage.getItem("username");
