@@ -10,14 +10,19 @@ class NewsFeedAdd extends Component {
     };
 
     save = () => {
+        if (!this.state.text) {
+            alert("Write a post");
+            return
+        }
         Api.fetch("/posts/", "POST", JSON.stringify({text: this.state.text})).then((res) => {
             console.log(res);
             if (res && res._id && this.state.selectedFile) {
-                var formData = new FormData();
+                let formData = new FormData();
                 formData.append("image", this.state.selectedFile);
                 Api.request("/posts/" + res._id + "/picture", "POST", formData).then(() => this.props.refresh());
             } else this.props.refresh();
         });
+        this.setState({text: ""})
     };
 
     updateFeed = (name, newText) => {
