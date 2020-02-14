@@ -231,7 +231,6 @@ function Login(props) {
                             callback={facebookLogin}/>
                     </div>
                 </div>
-
             </main>
         </div>
     );
