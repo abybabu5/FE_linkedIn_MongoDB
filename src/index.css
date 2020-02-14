@@ -1,5 +1,6 @@
 body {
     margin: 0;
+    background-color: #eeeeee!important;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
     'Helvetica Neue', sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -26,47 +27,12 @@ code {
     margin-left: 0.5rem;
 }
 
-.aboutUsJumbotron {
-    border: 2px solid grey;
-}
-
-.profile-background-image {
-    background-image: url('./Image/backgroundProfile.jpeg');
-    height: 180px;
-}
-
-.jumbotronProfile {
-    background-color: white !important;
-    -webkit-box-shadow: 10px 2px 16px -2px rgba(158, 158, 158, 0.68);
-    -moz-box-shadow: 10px 2px 16px -2px rgba(158, 158, 158, 0.68);
-    box-shadow: 10px 2px 16px -2px rgba(158, 158, 158, 0.68);
-}
 .nav-user-foto {
-  border-radius: 50%;
-
-}
-.profile-foto {
-    width: 100px;
     border-radius: 50%;
+    width: 100%;
+
 }
 
-.profileHeading {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-#buttonEdit {
-    position: relative;
-    top: -50px;
-    right: 0;
-}
-
-#buttonPrint {
-    position: relative;
-    top: -40px;
-    right: 0;
-}
 
 /* #################### NAVIGATION  ######################### */
 
@@ -325,7 +291,7 @@ code {
 }
 
 .btn-secondary {
-  border-color: none !important;
+  border-color: white !important;
 }
 
 .modalHeaderNfModal {
@@ -559,4 +525,54 @@ hr {
     font-weight: 600;
     color: rgba(0,0,0,0.9);
     padding: 0 0 4px 0;
+}
+.menu-flags-container {
+    /* position: relative; */
+    top: -7px;
+    left: 10px
+}
+
+.menu-flags-container-login {
+    left: 280px;
+    position: relative;
+}
+.profile-foto {
+    width: 100px;
+    border-radius: 50%;
+}
+
+.profileHeading {
+    border-radius: 3px;
+    height: 130px;
+    display: flex;
+    align-items: center;
+    background-color: gray;
+    background-image: url("./Image/backgroundProfile.jpeg");
+    background-size: cover;
+    position: relative;
+}
+
+.profileHeading img {
+    position: absolute;
+    left: 30px
+}
+
+.experience-container {
+    margin: 20px;
+    padding: 10px;
+    border: solid 1px rgba(0,0,0,0.4);
+    border-radius: 3px;
+    background-color: white;
+}
+
+.experience-container-title {
+    border-bottom: solid 1px black;
+    padding-bottom: 10px;
+}
+
+.profile-container {
+    background-color: white;
+    border: solid 1px rgba(0,0,0,0.4);
+    border-radius: 3px;
+    padding-bottom: 20px;
 }

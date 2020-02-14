@@ -6,20 +6,17 @@ class AboutUs extends React.Component {
 
     render() {
         return (
-            <Row>
-                <Col className="col-12 mt-1">
-                    <Jumbotron>
-                        <div>
-                            <h2>
-                                {this.props.profile.name} {this.props.profile.surname}
-                            </h2>
-                            <h4>{this.props.profile.title}</h4>
-                            <h4>{this.props.profile.area}</h4>
-                        </div>
-                        <div>{this.props.profile.bio}</div>
-                    </Jumbotron>
-                </Col>
-            </Row>
+            <>
+                {this.props.profile &&<>
+                    <div className="text-left ml-3 mb-3">
+                        <h2>
+                            {this.props.profile.name} {this.props.profile.surname}
+                        </h2>
+                        <h4>{this.props.profile.title}</h4>
+                        <h5>{this.props.profile.area}</h5>
+                    </div>
+                </>}
+            </>
         );
     }
 }

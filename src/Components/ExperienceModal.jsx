@@ -3,9 +3,6 @@ import {Button, Col, Form, FormGroup, Input, Label, Modal, ModalBody, ModalFoote
 import Api from '../Api';
 
 class ExperienceModal extends React.Component {
-    //const {buttonLabel, className} = props;
-    //experience = JSON.parse(JSON.stringify(this.props.experience));
-
     constructor(props) {
         super(props);
         this.state = {modal: false, selectedFile: null, presentWork: false};
@@ -28,15 +25,7 @@ class ExperienceModal extends React.Component {
     };
 
     submit() {
-        //take props from props, not by Id
-        // const role = document.getElementById('role').value;
-        // const company = document.getElementById('company').value;
-        // const startDate = document.getElementById('startDate').value;
-        // const endDate = document.getElementById('endDate').value;
-        // const description = document.getElementById('description').value;
-        // const area = document.getElementById('area').value;
-        //
-        // const experience = { startDate, endDate, description, role, company, area };
+
         let method = "POST";
         if (this.props.experience._id !== undefined) {
             method = "PUT";
@@ -66,8 +55,6 @@ class ExperienceModal extends React.Component {
                 this.props.showUpdatedExperience(true);
             }
             this.setState({modal: false});
-            //send the new experience to the parent component. the parent component shoukld just push it into the exprience array
-            // window.location.reload();
         });
     }
 

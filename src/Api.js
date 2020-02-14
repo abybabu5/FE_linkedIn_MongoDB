@@ -6,6 +6,10 @@ class Api {
 
     // static BASE_URL = "http://be-linkedin-aby.herokuapp.com";
 
+    static get TOKEN() {
+        return localStorage.getItem("access_token");
+    }
+
     static get USER() {
         console.log("USER", sessionStorage.getItem("username"));
         return sessionStorage.getItem("username");
@@ -45,9 +49,11 @@ class Api {
 
     static async fetch(endpoint, method = 'GET', body, contentType = 'application/json') {
         console.log(endpoint);
-        const headers = {...Api.BASE_HEADERS};
+        const headers = {};
         if (contentType) headers["Content-type"] = contentType;
+        if (Api.TOKEN) headers["access_token"] = Api.TOKEN;
         console.log(headers);
+
         try {
             let resp = await fetch(Api.BASE_URL + endpoint, {
                 headers: headers,
@@ -87,6 +93,7 @@ class Api {
             var request = new XMLHttpRequest();
             request.open(method, Api.BASE_URL + endpoint, true);
             request.setRequestHeader("Authorization", "basic " + Api.AUTH);
+            if (Api.TOKEN) request.setRequestHeader("access_token", Api.TOKEN);
             request.onload = (res) => resolve(JSON.parse(request.response));
             request.onerror = (error) => reject(error);
             request.send(body);

@@ -10,10 +10,16 @@ import SearchProfile from "./SearchProfile";
 import LoadingBar from "./LoadingBar";
 import NewsFeedComments from "./NewsFeedComments";
 import CommentModal from "./CommentModal";
+import {connect} from "react-redux";
+import {loadPosts} from "../Actions/loadPosts";
 
+const mapStateToProps = state => state;
+const mapDispatchToProps = dispatch => ({
+    loadPost: () => dispatch(loadPosts())
+});
 class NewsFeed extends Component {
     state = {
-        newsfeed: null,
+      //  newsfeed: null,
         selectedNews: {},
         isLoading: true,
         items: [],
@@ -23,19 +29,20 @@ class NewsFeed extends Component {
 
     loadData = async () => {
         // load posts and users
-        const newsfeed = await Api.fetch('/posts');
-        const users = await Api.fetch('/profile');
+        // const newsfeed = await Api.fetch('/posts');
+        // const users = await Api.fetch('/profile');
         // map the user object to his post
-        newsfeed.map(post => {
-            post.user = users.find(user => user.username === post.username);
-            return post;
-        });
-        newsfeed.reverse();
-        this.setState({
-            newsfeed: newsfeed,
-            items: newsfeed.slice(0, 5),
-            isLoading: false
-        });
+        // newsfeed.map(post => {
+        //     post.user = users.find(user => user.username === post.username);
+        //     return post;
+        // });
+        // newsfeed.reverse();
+        this.props.loadPost();
+        // this.setState({
+        //     // newsfeed: newsfeed,
+        //     items: newsfeed.slice(0, 5),
+        //     isLoading: false
+        // });
     };
 
     feedData = () => {
@@ -43,7 +50,7 @@ class NewsFeed extends Component {
         if (!this.state.isLoading) {
             this.setState({isLoading: true, error: undefined, cursor: this.state.cursor});
             setTimeout(() => this.setState(state => ({
-                items: [...state.items, ...(this.state.newsfeed.slice(this.state.cursor, this.state.cursor + 5))],
+                items: [...state.items, ...(this.props.NewsFeed.slice(this.state.cursor, this.state.cursor + 5))],
                 cursor: this.state.cursor + 5,
                 isLoading: false
             })), 2000);
@@ -98,9 +105,11 @@ class NewsFeed extends Component {
     };
 
     render() {
-        if (!this.state.newsfeed)
+        console.log(this.props);
+        //return JSON.stringify(this.props)
+        if (!this.props.NewsFeed)
             return null;
-        const allnews = [...this.state.newsfeed];
+        const allnews = this.props.NewsFeed;
         allnews.map((news) => {
             news.isUpdated = news.updatedAt && (moment(news.createdAt).format("HH:mm") !== moment(news.updatedAt).format("HH:mm"))
         });
@@ -121,8 +130,8 @@ class NewsFeed extends Component {
                                 hasMore={!!this.state.cursor}
                                 onLoadMore={this.feedData}
                             >
-                                {this.state.items.length > 0
-                                    ? this.state.items.map(news => (
+                                {this.props.NewsFeed.length > 0
+                                    ? this.props.NewsFeed.map(news => (
 
                                         <div className="new-post-container" key={news._id}>
                                             <ListGroup>
@@ -243,4 +252,4 @@ class NewsFeed extends Component {
     }
 }
 
-export default NewsFeed;
+export default connect(mapStateToProps, mapDispatchToProps)(NewsFeed);

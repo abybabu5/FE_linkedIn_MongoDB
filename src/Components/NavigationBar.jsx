@@ -11,11 +11,20 @@ import {
     NavLink
 } from 'reactstrap';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import ReactFlagsSelect from 'react-flags-select';
+import 'react-flags-select/css/react-flags-select.css';
 import {faLinkedin} from '@fortawesome/free-brands-svg-icons';
-import {faBell, faBriefcase, faComments, faHome, faSearch, faTh, faUsers} from '@fortawesome/free-solid-svg-icons';
+import {faBell, faBriefcase, faComments, faHome, faSearch, faTh, faUsers, faSignOutAlt} from '@fortawesome/free-solid-svg-icons';
 import Api from "../Api";
 import {Redirect} from "react-router-dom";
 import SearchProfile from "./SearchProfile";
+import {connect} from "react-redux";
+import {loadProfiles} from "../Actions/loadProfiles";
+
+const mapStateToProps = state => state;
+const mapDispatchToProps = dispatch => ({
+    loadProfiles: () => dispatch(loadProfiles())
+});
 
 class NavigationBar extends Component {
     state = {user: null, goLogin: false, searchText: ''};
@@ -23,10 +32,12 @@ class NavigationBar extends Component {
     async loadData() {
         const data = await Api.fetch('/profile/me');
         this.setState({user: data});
+
     }
 
     componentDidMount() {
         this.loadData();
+        this.props.loadProfiles();
     }
 
     searchProfileStyle = {
@@ -54,10 +65,11 @@ class NavigationBar extends Component {
             return <Redirect to='/login'/>
         }
         return (
-            <Navbar className='nav-top  '>
+            <Navbar className='nav-top'>
                 <Nav className='mx-auto'>
                     <NavbarBrand href='/'>
-                        <svg preserveAspectRatio="xMinYMin meet" focusable="false" xmlns="http://www.w3.org/2000/svg" style={{width: '50px', height: '50px'}}>
+                        <svg preserveAspectRatio="xMinYMin meet" focusable="false" xmlns="http://www.w3.org/2000/svg"
+                             style={{width: '50px', height: '50px'}}>
                             <g className="scaling-icon" style={{fillOpacity: 1}}>
                                 <defs></defs>
 
@@ -152,7 +164,7 @@ class NavigationBar extends Component {
                     <NavItem>
                         <div className='nav-item-div'>
 
-                            <NavLink href='#'>
+                            <NavLink href='/'>
                                 <div className='profile-image-div'>
                                     {this.state.user &&
                                     <img className={'nav-user-foto'} onClick={this.logout} src={this.state.user.image}
@@ -176,9 +188,46 @@ class NavigationBar extends Component {
                         <div className='nav-item-div'>
 
                             <NavLink href='#'>
-                                <FontAwesomeIcon className='nav-icon' icon={faHome}/>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="20"
+                                     data-supported-dps="24x24" fill="currentColor" focusable="false">
+                                    <path
+                                        d="M22 5v14H2V5h20m1-2H1a1 1 0 00-1 1v16a1 1 0 001 1h22a1 1 0 001-1V4a1 1 0 00-1-1z"></path>
+                                    <path d="M2 5v14h10V5H2zm8 12H4v-2h6v2zm0-4H4v-2h6v2zm0-4H4V7h6v2z"
+                                          opacity=".25"></path>
+                                    <path opacity=".55" d="M14 7h6v2h-6zM14 11h6v2h-6zM14 15h6v2h-6z"></path>
+                                    <path
+                                        d="M10 7.53v8.93a.28.28 0 00.44.23l6.43-4.44a.33.33 0 000-.52L10.44 7.3a.28.28 0 00-.44.23z"></path>
+                                </svg>
                                 <div>Learning</div>
                             </NavLink>
+                        </div>
+                    </NavItem>
+                    <NavItem>
+                        <div className="menu-flags-container">
+                            <ReactFlagsSelect  className='menu-flags'
+                                               defaultCountry="US"
+                                               searchable={false}
+                                               countries={["US", "GB", "FR", "DE", "IT"]}
+                                               customLabels={{"US": "EN-US","GB": "EN-GB","FR": "FR","DE": "DE","IT": "IT"}}
+                                               showSelectedLabel={false}
+                                               showOptionLabel={false}
+                                               selectedSize={20}
+                                               optionsSize={25}
+                            />
+                        </div>
+                    </NavItem>
+                    <NavItem>
+                        <div className='nav-item-div'>
+
+                            <NavLink href='#'>
+                                <FontAwesomeIcon className='nav-icon' icon={faSignOutAlt}/>
+                                {this.state.user &&
+                                <div onClick={this.logout}>Log Out </div>
+                                }
+
+
+                            </NavLink>
+
                         </div>
                     </NavItem>
                 </Nav>
@@ -187,4 +236,4 @@ class NavigationBar extends Component {
     }
 }
 
-export default NavigationBar;
+export default connect(mapStateToProps, mapDispatchToProps)(NavigationBar);

@@ -2,7 +2,6 @@ import React from 'react';
 import {Container} from 'reactstrap'
 import NavigationBar from './NavigationBar';
 import {BrowserRouter as Router, Redirect, Route} from 'react-router-dom';
-
 import ProfilePage from "./ProfilePage";
 import NewsFeed from './NewsFeed';
 import Login from "./Login";
@@ -34,6 +33,7 @@ class MainPage extends React.Component {
     render() {
         return (
             <div>
+
                 <Router>
                     <PrivateRoute path='/' exact>
                         <NavigationBar/>

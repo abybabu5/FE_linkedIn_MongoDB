@@ -7,6 +7,7 @@ import LoadingBar from "./Components/LoadingBar";
 
 function App() {
   return (
+
     <div className='App'>
       <NavigationBar />
       <MainComponent />
