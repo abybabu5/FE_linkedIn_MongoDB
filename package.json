@@ -64,5 +64,15 @@
   },
   "devDependencies": {
     "print-js": "^1.0.63"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/abybabu5/BE_linkedIn_MongoDB"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/abybabu5/FE_linkedIn_MongoDB/issues"
+  },
+  "homepage": "https://github.com/abybabu5/FE_linkedIn_MongoDB/blob/master/README.md"
 }
+
