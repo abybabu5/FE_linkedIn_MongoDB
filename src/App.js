@@ -3,6 +3,7 @@ import MainComponent from './Components/MainComponent';
 import NavigationBar from './Components/NavigationBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+
 import LoadingBar from "./Components/LoadingBar";
 
 function App() {

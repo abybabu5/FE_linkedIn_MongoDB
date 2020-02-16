@@ -1,26 +1,32 @@
 import React from 'react';
 import {Button, Col, Form, FormGroup, Input, Label, Modal, ModalBody, ModalFooter, ModalHeader, Row} from 'reactstrap';
 import Api from '../Api';
+import {loadProfile} from "../Actions/loadProfiles";
+import {connect} from "react-redux";
+const mapStateToProps = state => state;
+const mapDispatchToProps = dispatch => ({
+  loadProfiles: (user) => dispatch(loadProfile(user))
+});
 
 class ProfileModal extends React.Component {
   //const {buttonLabel, className} = props;
   constructor(props) {
     super(props);
-    this.state = {modal: false, selectedFile: null, profile: {profile: ""}};
+    this.state = {modal: false, selectedFile: null, profile: {...this.props.profile, profile: ''}};
   }
 
   submit = (e) => {
     const props = this.props;
     if (this.state.profile._id) {
-      Api.fetch("/profile/" + this.props._id, "PUT", JSON.stringify(this.state.profile)).then(res => {
+      Api.fetch("/profile/" + this.state.profile._id, "PUT", JSON.stringify(this.state.profile)).then(res => {
         console.log("edit", res);
-        this.props.refresh();
+        this.props.loadProfiles(this.state.profile.username);
       });
 
     } else {
-      Api.fetch("/profile/" + this.props._id + "/profile", "POST", JSON.stringify(this.state.profile)).then(res => {
+      Api.fetch("/profile/" + this.state.profile._id + "/profile", "POST", JSON.stringify(this.state.profile)).then(res => {
         console.log("inserted", res);
-        this.props.refresh()
+        //this.props.refresh()
       });
     }
     this.setState({_id: undefined});
@@ -46,6 +52,7 @@ class ProfileModal extends React.Component {
   render()
   {
     const props = this.props;
+    // return <div>{JSON.stringify(this.state)}</div>
     return (
         <div>
           <Button onClick={this.toggle} className={'buttonEdit'} id='buttonEdit'>
@@ -61,14 +68,14 @@ class ProfileModal extends React.Component {
                     <FormGroup>
                       <Label for='name'>Name</Label>
                       <Input type='text' name='name' id='name' defaultValue={props.profile.name}
-                             placeholder='Mario'/>
+                             placeholder='Mario' onChange={this.updateForm} />
                     </FormGroup>
                   </Col>
                   <Col md={6}>
                     <FormGroup>
                       <Label for='surname'>Surname</Label>
                       <Input type='text' name='surname' id='surname'
-                             defaultValue={props.profile.surname} placeholder='Smith'/>
+                             defaultValue={props.profile.surname} placeholder='Smith'  onChange={this.updateForm} />
                     </FormGroup>
                   </Col>
                 </Row>
@@ -77,26 +84,26 @@ class ProfileModal extends React.Component {
                     <FormGroup>
                       <Label for='email'>Email</Label>
                       <Input type='email' name='email' id='email' defaultValue={props.profile.email}
-                             placeholder='user@example.com'/>
+                             placeholder='user@example.com'  onChange={this.updateForm}/>
                     </FormGroup>
                   </Col>
                   <Col md={6}>
                     <FormGroup>
                       <Label for='area'>Area</Label>
                       <Input type='text' name='area' id='area' defaultValue={props.profile.area}
-                             placeholder='Bangalore'/>
+                             placeholder='Bangalore'  onChange={this.updateForm}/>
                     </FormGroup>
                   </Col>
                 </Row>
                 <FormGroup>
                   <Label for='title'>Title</Label>
                   <Input type='text' name='title' id='title' defaultValue={props.profile.title}
-                         placeholder='CTO @ ACME corp'/>
+                         placeholder='CTO @ ACME corp'  onChange={this.updateForm}/>
                 </FormGroup>
                 <FormGroup>
                   <Label for='bio'>Bio</Label>
                   <Input type='textarea' name='bio' id='bio' defaultValue={props.profile.bio}
-                         placeholder='Bio'/>
+                         placeholder='Bio' onChange={this.updateForm}/>
                 </FormGroup>
                 <FormGroup>
                   <Label for='description'>Upload Photo</Label>
@@ -116,4 +123,4 @@ class ProfileModal extends React.Component {
   }
 }
 
-export default ProfileModal;
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileModal);

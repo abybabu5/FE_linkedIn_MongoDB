@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Col, Form, FormGroup, Input, Label, Row} from "reactstrap";
 import Api from "../Api";
 import {useState} from "react"
-import {Redirect} from 'react-router-dom';
+import {Redirect, useLocation} from 'react-router-dom';
 import RegistrationModal from "./RegistrationModal";
 import FacebookLoginWithButton from "react-facebook-login"
 import ReactFlagsSelect from "react-flags-select";
@@ -19,7 +19,9 @@ const mapDispatchToProps = dispatch => ({
 });
 
 function Login(props) {
+    let location = useLocation();
 
+    let {from} = location.state || {from: {pathname: "/"}}
     const [username, setUsername] = useState("");
     const [toDashBoard, setToDashBoard] = useState("");
     const [password, setPassword] = useState("");
@@ -53,7 +55,11 @@ function Login(props) {
         }))
             .then(res => {
                 if (res) {
-                    setToDashBoard("/users/" + username)
+                    if (from) {
+                        setToDashBoard(from.pathname)
+                    } else {
+                        setToDashBoard("/users/" + username)
+                    }
                 } else {
                     alert("invalid username and password");
                 }

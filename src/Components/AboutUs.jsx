@@ -14,6 +14,7 @@ class AboutUs extends React.Component {
                         </h2>
                         <h4>{this.props.profile.title}</h4>
                         <h5>{this.props.profile.area}</h5>
+                        <h5>{this.props.profile.email}</h5>
                     </div>
                 </>}
             </>

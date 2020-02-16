@@ -54,8 +54,7 @@ class Profile extends React.Component {
         // return <div>{JSON.stringify(this.props)}</div>
         return (
             this.props.Profile ? (
-                <div>
-
+                <div className="prof-container">
                     <Container className="profile-container">
                         <h1 id="cv-title" style={{display: this.state.titleShow?'block':'none'}}>Curriculum Vitæ</h1>
                         <Row>
@@ -81,7 +80,7 @@ class Profile extends React.Component {
 
     async loadData() {
         let user = Api.USER;
-        if (this.props.match) {
+        if (this.props.match && this.props.match.params && this.props.match.params.id) {
             user = this.props.match.params.id;
         }
         this.props.loadProfiles(user);

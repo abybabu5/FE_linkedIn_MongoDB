@@ -31,17 +31,17 @@ class NewsFeedAdd extends Component {
 
     render() {
         return (
-            <Row>
+            <Row >
                 <Col sm="12">
 
-                    <div className="display-flex bodyNewsFeed">
+                    <div className="display-flex bodyNewsFeed shadow-linkedin">
                         <NewsFeedModal updateFeed={this.updateFeed} save={this.save}/>
-                        <button className="share-box_trigger share-box_trigger1"><i
-                            className="fas fa-camera fa-2x iconNewsFeed"></i></button>
-                        <button className="share-box_trigger share-box_trigger1"><i
-                            className="fas fa-video fa-2x iconNewsFeed"></i></button>
-                        <button className="share-box_trigger share-box_trigger1"><i
-                            className="far fa-file-alt fa-2x iconNewsFeed"></i></button>
+                        <div className="share-box_trigger share-box_trigger1"><i
+                            className="fas fa-camera fa-2x iconNewsFeed"></i></div>
+                        <div className="share-box_trigger share-box_trigger1"><i
+                            className="fas fa-video fa-2x iconNewsFeed"></i></div>
+                        <div className="share-box_trigger share-box_trigger-rounded"><i
+                            className="far fa-file-alt fa-2x iconNewsFeed"></i></div>
                     </div>
 
                 </Col>

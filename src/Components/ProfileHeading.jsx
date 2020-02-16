@@ -19,7 +19,7 @@ class ProfileHeading extends React.Component {
                             {(Api.USER === this.props.profile.username || this.props.user === undefined) &&
                             <div style={{flexGrow: 1}}>
                                 <ProfileModal profile={this.props.profile}/>
-                                <Button id="buttonPrint" onClick={this.props.printFn}><i
+                                <Button id="buttonPrint"  onClick={this.props.printFn} ><i
                                     className='fas fa-print'></i></Button>
                             </div>}
                         </div>

@@ -167,7 +167,7 @@ class NavigationBar extends Component {
                             <NavLink href='/'>
                                 <div className='profile-image-div'>
                                     {this.state.user &&
-                                    <img className={'nav-user-foto'} onClick={this.logout} src={this.state.user.image}
+                                    <img className={'nav-user-foto'}  src={this.state.user.image}
                                          alt={'profile'}/>}
                                 </div>
                                 <div>Me</div>
