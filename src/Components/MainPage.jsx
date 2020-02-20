@@ -5,6 +5,7 @@ import {BrowserRouter as Router, Redirect, Route} from 'react-router-dom';
 import ProfilePage from "./ProfilePage";
 import NewsFeed from './NewsFeed';
 import Login from "./Login";
+import InstantMessaging from "./InstantMessaging";
 
 function PrivateRoute({children, ...rest}) {
     return (
@@ -42,6 +43,7 @@ class MainPage extends React.Component {
                     <PrivateRoute path='/users/:id'>
                         <NavigationBar/>
                         <ProfilePage/>
+                        {/*<InstantMessaging />*/}
                     </PrivateRoute>
                     <PrivateRoute path='/NewsFeed'>
                         <NavigationBar/>

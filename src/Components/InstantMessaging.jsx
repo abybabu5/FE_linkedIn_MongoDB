@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import io from "socket.io-client";
+import {Modal, InputGroup, FormControl, Button} from "react-bootstrap";
 
 class InstantMessaging extends Component {
     socket = null;
