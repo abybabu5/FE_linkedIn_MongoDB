@@ -62,7 +62,7 @@ class Experiences extends Component {
             } else {
                 experiences[index] = {...this.state.selectedExp};
             }
-            this.setState({experiences});
+            this.props.Profile.Experiences = experiences;
 
         }
         this.resetUpdate();

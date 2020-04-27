@@ -107,6 +107,7 @@ class NewsFeedComments extends Component {
         return <div>
             {this.props.comments && this.props.comments
                 .map((comment) =>
+                    comment.postedBy &&
                     <div style={{margin: '15px'}}>
                         <ListGroup>
                             <ListGroupItem color="success">
@@ -117,7 +118,7 @@ class NewsFeedComments extends Component {
                                     <div className="details-container">
                                         <div
                                             className="comment-user-name"><Link
-                                            to={'users/' + comment.username}>{comment.postedBy.profile.name} {comment.postedBy.profile.surname}</Link>
+                                            to={'users/' + comment.postedBy.username}>{comment.postedBy.profile.name} {comment.postedBy.profile.surname}</Link>
                                         </div>
                                         <div
                                             className="comment-user-title">{comment.postedBy.profile.title} in {comment.postedBy.profile.area}</div>

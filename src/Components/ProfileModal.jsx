@@ -20,6 +20,9 @@ class ProfileModal extends React.Component {
     if (this.state.profile._id) {
       Api.fetch("/profile/" + this.state.profile._id, "PUT", JSON.stringify(this.state.profile)).then(res => {
         console.log("edit", res);
+        var formData = new FormData();
+        formData.append("profile", this.state.selectedFile);
+        Api.request("/profile/" + Api.USER + "/picture", "POST", formData);
         this.props.loadProfiles(this.state.profile.username);
       });
 
