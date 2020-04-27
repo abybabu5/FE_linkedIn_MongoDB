@@ -12,9 +12,9 @@ class SearchProfile extends Component {
         redirect: null
     };
 
-    componentDidMount() {
-        // Api.fetch('/profile/').then((users) => this.setState({users}));
-    }
+    // componentDidMount() {
+    //     Api.fetch('/profile/').then((users) => this.setState({users}));
+    // }
 
     onClick = (user) => {
         this.setState({redirect: user});
@@ -23,8 +23,8 @@ class SearchProfile extends Component {
 
     render() {
         // return <div>{JSON.stringify(this.state)}</div>;
-        if (this.props.redirect) {
-            return (<Redirect to={'/users/' + this.props.redirect}/>);
+        if (this.state.redirect) {
+            return (<Redirect to={'/users/' + this.state.redirect}/>);
         }
         const searchText = this.props.searchText.toLowerCase();
         const users = this.state.users.filter((user) => {

@@ -69,8 +69,7 @@ class NewsFeed extends Component {
 
     deleteNewsfeed = async (post) => {
         let resp = await Api.fetch("/posts/" + post._id, "DELETE");
-        var newsWithoutCurrent = this.state.newsfeed.filter(x => x._id !== post._id);
-        this.setState({newsfeed: newsWithoutCurrent});
+        var newsWithoutCurrent = this.props.NewsFeed.filter(x => x._id !== post._id);
         this.loadData();
     };
     updateNewsfeed = (val) => {
