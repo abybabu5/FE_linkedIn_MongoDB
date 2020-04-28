@@ -146,7 +146,7 @@ class NavigationBar extends Component {
                     </NavItem>
                     <NavItem>
                         <div className='nav-item-div'>
-                            <NavLink href='#'>
+                            <NavLink href='/InstantMessaging'>
                                 <FontAwesomeIcon className='nav-icon' icon={faComments}/>
                                 <div>Messaging</div>
                             </NavLink>
