@@ -679,3 +679,62 @@ hr {
     float: right;
 
 }
+.chat-app-container {
+    border: 2px solid #dedede;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    padding: 25px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+
+/*.chat-app-container::after {*/
+/*    content: "";*/
+/*    clear: both;*/
+/*    display: table;*/
+/*}*/
+
+.message-text {
+    margin-left: 10px;
+}
+
+.messages {
+    padding: 10px;
+    border-color: #ccc;
+    background-color: #ddd;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.messages.user-other {
+    justify-content: flex-end;
+}
+
+.messages.user-me .chat-image-container {
+    margin-right: 20px;
+    margin-left: 10px;
+}
+
+.messages.user-other .chat-image-container {
+    order: 3;
+    margin-left: 20px;
+    margin-right: 10px;
+}
+
+.messages.user-other .chat-user-container {
+    order: 2
+}
+
+.messages.user-other .message-text {
+    margin-right: 10px;
+}
+
+.chat-image {
+    max-width: 60px;
+    width: 100%;
+    border-radius: 50%;
+}

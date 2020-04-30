@@ -29,7 +29,7 @@ class Profile extends React.Component {
             filename: 'cv.pdf',
             enableLinks: true,
             image: {type: 'jpeg', quality: 0.98},
-            margin: [10, 0],
+            margin: [8, 0],
             html2canvas: {
                 scale: 8,
                 useCORS: true,

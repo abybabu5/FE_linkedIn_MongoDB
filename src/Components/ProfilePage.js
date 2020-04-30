@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Profile from "./Profile";
 import Experiences from "./Experiences";
 import { withRouter } from 'react-router-dom'
+import InstantMessaging from "./InstantMessaging";
 
 
 class ProfilePage extends Component {
@@ -11,6 +12,7 @@ class ProfilePage extends Component {
             <div id="profile">
                 <Profile match={this.props.match.params.id} />
                 <Experiences match={this.props.match.params.id} />
+
             </div>
         );
     }

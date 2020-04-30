@@ -5,6 +5,11 @@ export default function (state = {}, action) {
                 ...state,
                 Profile: action.payload
             };
+        case "LOAD_MYPROFILE":
+            return {
+                ...state,
+                MyProfile: action.payload
+            };
         case "LOAD_PROFILES":
             return {
                 ...state,

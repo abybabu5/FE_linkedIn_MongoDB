@@ -205,7 +205,7 @@ function Login(props) {
                                         <Label for='name'><Trans i18nKey='NAME'/></Label>
                                         <Input type='text' name='username' id='username'
                                                defaultValue={props.username}
-                                               placeholder='user' onChange={e => handleChange(e)}/>
+                                               placeholder='username' onChange={e => handleChange(e)}/>
                                     </FormGroup>
                                 </Col>
                             </Row>
@@ -214,7 +214,7 @@ function Login(props) {
                                     <FormGroup>
                                         <Label for='password'><Trans i18nKey='PASSWORD'/></Label>
                                         <Input type='password' name='password' id='password'
-                                               defaultValue={props.password} onChange={e => handleChange(e)}/>
+                                               defaultValue={props.password} placeholder='**********' onChange={e => handleChange(e)}/>
                                     </FormGroup>
                                 </Col>
                             </Row>

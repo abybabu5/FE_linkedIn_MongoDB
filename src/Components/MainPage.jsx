@@ -43,7 +43,10 @@ class MainPage extends React.Component {
                     <PrivateRoute path='/users/:id'>
                         <NavigationBar/>
                         <ProfilePage/>
-                        {/*<InstantMessaging />*/}
+                    </PrivateRoute>
+                    <PrivateRoute path='/InstantMessaging'>
+                        <NavigationBar/>
+                        <InstantMessaging />
                     </PrivateRoute>
                     <PrivateRoute path='/NewsFeed'>
                         <NavigationBar/>

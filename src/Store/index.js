@@ -14,7 +14,8 @@ const initialState =
         Profile: {
             Profile: {},
             Profiles: [],
-            Experiences: []
+            Experiences: [],
+            MyProfile: {}
         },
         SearchProfile: {
             searchResult: [],

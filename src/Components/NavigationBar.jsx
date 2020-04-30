@@ -19,25 +19,27 @@ import Api from "../Api";
 import {Redirect} from "react-router-dom";
 import SearchProfile from "./SearchProfile";
 import {connect} from "react-redux";
-import {loadProfiles} from "../Actions/loadProfiles";
+import {loadMyProfile, loadProfiles} from "../Actions/loadProfiles";
 
 const mapStateToProps = state => state;
 const mapDispatchToProps = dispatch => ({
-    loadProfiles: () => dispatch(loadProfiles())
+    loadProfiles: () => dispatch(loadProfiles()),
+    loadMyProfile: () => dispatch(loadMyProfile())
 });
 
 class NavigationBar extends Component {
     state = {user: null, goLogin: false, searchText: ''};
 
     async loadData() {
-        const data = await Api.fetch('/profile/me');
-        this.setState({user: data});
+        // const data = await Api.fetch('/profile/me');
+        // this.setState({user: data});
 
     }
 
     componentDidMount() {
         this.loadData();
         this.props.loadProfiles();
+        this.props.loadMyProfile();
     }
 
     searchProfileStyle = {
@@ -166,8 +168,8 @@ class NavigationBar extends Component {
 
                             <NavLink href='/'>
                                 <div className='profile-image-div'>
-                                    {this.state.user &&
-                                    <img className={'nav-user-foto'}  src={this.state.user.image}
+                                    {this.props.Profile.MyProfile &&
+                                    <img className={'nav-user-foto'}  src={this.props.Profile.MyProfile.image}
                                          alt={'profile'}/>}
                                 </div>
                                 <div>Me</div>
@@ -219,10 +221,10 @@ class NavigationBar extends Component {
                     <NavItem>
                         <div className='nav-item-div'>
 
-                            <NavLink href='#'>
+                            <NavLink href='#' onClick={this.logout}>
                                 <FontAwesomeIcon className='nav-icon' icon={faSignOutAlt}/>
-                                {this.state.user &&
-                                <div onClick={this.logout}>Log Out </div>
+                                {this.props.Profile.MyProfile &&
+                                <div >Log Out </div>
                                 }
 
 
