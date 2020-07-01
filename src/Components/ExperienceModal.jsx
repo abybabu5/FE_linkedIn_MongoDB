@@ -96,7 +96,7 @@ class ExperienceModal extends React.Component {
                                                 value={this.state.presentWork}
                                                 onChange={(val) => this.setState({presentWork: val.target.checked})}
                                             />
-                                            <span>I still work here!</span>
+                                            <span> I still work here!</span>
                                         </Label>
                                     </FormGroup>
                                 </Col>

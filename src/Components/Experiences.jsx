@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button, Col, Container, Jumbotron, Row} from 'reactstrap';
+import {Button, Col, Container, Row} from 'reactstrap';
 import ExperienceModal from './ExperienceModal';
 import Api from '../Api';
 import moment from "moment";
@@ -13,7 +13,8 @@ const mapDispatchToProps = dispatch => ({
 
 class Experiences extends Component {
     state = {
-        selectedExp: {}
+        selectedExp: {},
+        experiences:[]
     };
 
     async loadData() {
@@ -77,7 +78,7 @@ class Experiences extends Component {
 
 
     render() {
-        if (!this.props.Profile.Experiences) return null;
+        if (!Array.isArray(this.props.Profile.Experiences)) return null;
         this.props.Profile.Experiences.map((user) => {
             user.canEdit = Api.USER === user.username
         });
